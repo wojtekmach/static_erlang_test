@@ -1,36 +1,63 @@
+name: Test Erlang on Multiple Distributions
+
 on:
   push:
 
 jobs:
   test:
-    # runs-on: ubuntu-latest
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-latest
+    # runs-on: ubuntu-24.04-arm
 
     steps:
     - name: Download Erlang tarball
       run: |
-        # tgz=erlang-28.1-x64.tar.gz
-        tgz=erlang-28.1-arm64.tar.gz
+        tgz=erlang-28.1-x64.tar.gz
+        # tgz=erlang-28.1-arm64.tar.gz
         curl -fLO https://github.com/yoshi-monster/static_erlang/releases/download/otp-28.1/$tgz
         mkdir otp
         tar -xzf $tgz -C otp
 
     - name: Test on Debian
       run: |
-        docker run --rm -v $PWD/otp/erlang:/tmp/otp debian:bookworm /tmp/otp/bin/erl -eval 'io:format("Debian: Erlang/OTP ~s~n", [erlang:system_info(otp_release)]), halt().' -noshell
+        docker run --rm -v $PWD/otp/erlang:/tmp/otp debian:bookworm \
+          /tmp/otp/bin/erl -noshell -eval '
+            io:format("> erlang:system_info(system_version)~n~s~n", [erlang:system_info(system_version)]),
+            io:format("> erlang:system_info(system_architecture)~n~s~n", [erlang:system_info(system_architecture)]),
+            io:format("> crypto:strong_rand_bytes(2)~n~w~n", [crypto:strong_rand_bytes(2)]),
+            halt().'
 
     - name: Test on Fedora
       run: |
-        docker run --rm -v $PWD/otp/erlang:/tmp/otp fedora:latest /tmp/otp/bin/erl -eval 'io:format("Fedora: Erlang/OTP ~s~n", [erlang:system_info(otp_release)]), halt().' -noshell
+        docker run --rm -v $PWD/otp/erlang:/tmp/otp fedora:latest \
+          /tmp/otp/bin/erl -noshell -eval '
+            io:format("> erlang:system_info(system_version)~n~s~n", [erlang:system_info(system_version)]),
+            io:format("> erlang:system_info(system_architecture)~n~s~n", [erlang:system_info(system_architecture)]),
+            io:format("> crypto:strong_rand_bytes(2)~n~w~n", [crypto:strong_rand_bytes(2)]),
+            halt().'
 
     - name: Test on Arch Linux
       run: |
-        docker run --rm -v $PWD/otp/erlang:/tmp/otp archlinux:latest /tmp/otp/bin/erl -eval 'io:format("Arch: Erlang/OTP ~s~n", [erlang:system_info(otp_release)]), halt().' -noshell
+        docker run --rm -v $PWD/otp/erlang:/tmp/otp archlinux:latest \
+          /tmp/otp/bin/erl -noshell -eval '
+            io:format("> erlang:system_info(system_version)~n~s~n", [erlang:system_info(system_version)]),
+            io:format("> erlang:system_info(system_architecture)~n~s~n", [erlang:system_info(system_architecture)]),
+            io:format("> crypto:strong_rand_bytes(2)~n~w~n", [crypto:strong_rand_bytes(2)]),
+            halt().'
 
     - name: Test on Alpine
       run: |
-        docker run --rm -v $PWD/otp/erlang:/tmp/otp alpine:latest /tmp/otp/bin/erl -eval 'io:format("Alpine: Erlang/OTP ~s~n", [erlang:system_info(otp_release)]), halt().' -noshell
+        docker run --rm -v $PWD/otp/erlang:/tmp/otp alpine:latest \
+          /tmp/otp/bin/erl -noshell -eval '
+            io:format("> erlang:system_info(system_version)~n~s~n", [erlang:system_info(system_version)]),
+            io:format("> erlang:system_info(system_architecture)~n~s~n", [erlang:system_info(system_architecture)]),
+            io:format("> crypto:strong_rand_bytes(2)~n~w~n", [crypto:strong_rand_bytes(2)]),
+            halt().'
 
     - name: Test on Ubuntu
       run: |
-        docker run --rm -v $PWD/otp/erlang:/tmp/otp ubuntu:22.04 /tmp/otp/bin/erl -eval 'io:format("Ubuntu: Erlang/OTP ~s~n", [erlang:system_info(otp_release)]), halt().' -noshell
+        docker run --rm -v $PWD/otp/erlang:/tmp/otp ubuntu:22.04 \
+          /tmp/otp/bin/erl -noshell -eval '
+            io:format("> erlang:system_info(system_version)~n~s~n", [erlang:system_info(system_version)]),
+            io:format("> erlang:system_info(system_architecture)~n~s~n", [erlang:system_info(system_architecture)]),
+            io:format("> crypto:strong_rand_bytes(2)~n~w~n", [crypto:strong_rand_bytes(2)]),
+            halt().'
