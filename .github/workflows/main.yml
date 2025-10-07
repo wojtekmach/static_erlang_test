@@ -21,8 +21,8 @@ jobs:
       run: |
         docker run --rm -v $PWD/otp/erlang:/tmp/otp debian:bookworm \
           /tmp/otp/bin/erl -noshell -eval '
-            io:format("> erlang:system_info(system_version)~n~s~n", [erlang:system_info(system_version)]),
-            io:format("> erlang:system_info(system_architecture)~n~s~n", [erlang:system_info(system_architecture)]),
+            io:format("> erlang:system_info(system_version)~n~p~n", [erlang:system_info(system_version)]),
+            io:format("> erlang:system_info(system_architecture)~n~p~n", [erlang:system_info(system_architecture)]),
             io:format("> crypto:strong_rand_bytes(2)~n~w~n", [crypto:strong_rand_bytes(2)]),
             halt().'
 
@@ -30,8 +30,8 @@ jobs:
       run: |
         docker run --rm -v $PWD/otp/erlang:/tmp/otp fedora:latest \
           /tmp/otp/bin/erl -noshell -eval '
-            io:format("> erlang:system_info(system_version)~n~s~n", [erlang:system_info(system_version)]),
-            io:format("> erlang:system_info(system_architecture)~n~s~n", [erlang:system_info(system_architecture)]),
+            io:format("> erlang:system_info(system_version)~n~p~n", [erlang:system_info(system_version)]),
+            io:format("> erlang:system_info(system_architecture)~n~p~n", [erlang:system_info(system_architecture)]),
             io:format("> crypto:strong_rand_bytes(2)~n~w~n", [crypto:strong_rand_bytes(2)]),
             halt().'
 
@@ -39,8 +39,8 @@ jobs:
       run: |
         docker run --rm -v $PWD/otp/erlang:/tmp/otp archlinux:latest \
           /tmp/otp/bin/erl -noshell -eval '
-            io:format("> erlang:system_info(system_version)~n~s~n", [erlang:system_info(system_version)]),
-            io:format("> erlang:system_info(system_architecture)~n~s~n", [erlang:system_info(system_architecture)]),
+            io:format("> erlang:system_info(system_version)~n~p~n", [erlang:system_info(system_version)]),
+            io:format("> erlang:system_info(system_architecture)~n~p~n", [erlang:system_info(system_architecture)]),
             io:format("> crypto:strong_rand_bytes(2)~n~w~n", [crypto:strong_rand_bytes(2)]),
             halt().'
 
@@ -48,8 +48,8 @@ jobs:
       run: |
         docker run --rm -v $PWD/otp/erlang:/tmp/otp alpine:latest \
           /tmp/otp/bin/erl -noshell -eval '
-            io:format("> erlang:system_info(system_version)~n~s~n", [erlang:system_info(system_version)]),
-            io:format("> erlang:system_info(system_architecture)~n~s~n", [erlang:system_info(system_architecture)]),
+            io:format("> erlang:system_info(system_version)~n~p~n", [erlang:system_info(system_version)]),
+            io:format("> erlang:system_info(system_architecture)~n~p~n", [erlang:system_info(system_architecture)]),
             io:format("> crypto:strong_rand_bytes(2)~n~w~n", [crypto:strong_rand_bytes(2)]),
             halt().'
 
@@ -57,7 +57,7 @@ jobs:
       run: |
         docker run --rm -v $PWD/otp/erlang:/tmp/otp ubuntu:22.04 \
           /tmp/otp/bin/erl -noshell -eval '
-            io:format("> erlang:system_info(system_version)~n~s~n", [erlang:system_info(system_version)]),
-            io:format("> erlang:system_info(system_architecture)~n~s~n", [erlang:system_info(system_architecture)]),
+            io:format("> erlang:system_info(system_version)~n~p~n", [erlang:system_info(system_version)]),
+            io:format("> erlang:system_info(system_architecture)~n~p~n", [erlang:system_info(system_architecture)]),
             io:format("> crypto:strong_rand_bytes(2)~n~w~n", [crypto:strong_rand_bytes(2)]),
             halt().'
